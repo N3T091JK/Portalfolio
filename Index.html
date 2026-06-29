@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Douglas Ernesto Polanco Arteaga</title>
+    
+    <!-- Tailwind CSS (Estilos) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Tailwind para Modo Oscuro -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Transiciones suaves de color para el modo oscuro */
+        body, div, section, nav, h1, h2, h3, p, a, button {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        /* Ocultar barra de scroll en el carrusel pero permitir funcionalidad */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans selection:bg-indigo-100 dark:bg-slate-950 dark:text-slate-200 dark:selection:bg-indigo-900">
+
+    <!-- Botón Modo Oscuro Flotante -->
+    <div class="fixed bottom-4 right-4 z-50">
+        <button onclick="toggleTheme()" class="p-3 rounded-full bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-amber-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all transform hover:scale-105" title="Cambiar Tema">
+            <!-- Icono Sol (visible en dark) -->
+            <i data-lucide="sun" class="w-6 h-6 hidden dark:block"></i>
+            <!-- Icono Luna (visible en light) -->
+            <i data-lucide="moon" class="w-6 h-6 block dark:hidden"></i>
+        </button>
+    </div>
+
+    <!-- Modal para ver imágenes en grande -->
+    <div id="imageModal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeModal()">
+        <button class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/50 rounded-full">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="modalImage" src="" alt="Diploma Full Size" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl transform scale-100 transition-transform cursor-default" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent truncate">
+                Douglas Polanco
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Sobre mí</a>
+                <a href="#skills" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Habilidades</a>
+                <a href="#education" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Formación</a>
+                  <a href="#proyectos" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Proyectos Realizados</a>
+                <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-white dark:bg-slate-950 overflow-hidden">
+        <div class="container mx-auto px-6 py-20 md:py-32 flex flex-col-reverse md:flex-row items-center">
+            
+            <div class="w-full md:w-1/2 pr-0 md:pr-12">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
+                    Hola, soy <span class="text-indigo-600 dark:text-indigo-400">Douglas Polanco</span>.
+                    <br />
+                    <span class="text-xl md:text-3xl font-semibold text-slate-500 dark:text-slate-400 mt-2 block">
+                        Ingeniería de Sistemas & Ciencia de Datos
+                    </span>
+                </h1>
+                
+                <p class="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed max-w-lg">
+                    Especialista en análisis de datos, desarrollo y herramientas de IA. Transformo información compleja en soluciones visuales y estrategias eficientes.
+                </p>
+
+                <div class="flex gap-4 flex-wrap">
+                    <button class="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-200 dark:shadow-none">
+                        Ver Portafolio
+                    </button>
+                    <!-- BOTÓN CV -->
+                    <a href="DOUGLAS ERNESTO POLANCO ARTEAGA.pdf" class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-5 h-5"></i> Descargar CV
+                    </a>
+                    <a href="https://wa.me/50370192145" target="_blank" class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2">
+                        <i data-lucide="phone" class="w-5 h-5"></i> Contactar
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 mb-12 md:mb-0 flex justify-center relative">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex items-center justify-center overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl">
+                    <span class="text-indigo-300 dark:text-indigo-500 text-6xl font-bold opacity-50"></span>
+                     <img src="img/foto.png" alt="Douglas Polanco" class="object-cover w-full h-full" /> 
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="flex items-center gap-2 mb-8 justify-center">
+                <i data-lucide="user" class="text-indigo-600 dark:text-indigo-400 w-6 h-6"></i>
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Sobre Mí</h2>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-lg">
+                    Soy <strong>Douglas Ernesto Polanco Arteaga</strong>, estudiante de <strong>Ingeniería en Sistemas</strong> en la Universidad Doctor Andrés Bello. Tras completar mis 5 años de formación base, actualmente estoy cursando mi <strong>año de especialización en Ciencia de Datos</strong>.
+                </p>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Combino mis conocimientos técnicos en bases de datos (SQL, MySQL) y herramientas de visualización como Power BI, con habilidades en diseño y ofimática. Me apasiona encontrar patrones en los datos y aprovechar las últimas tecnologías de IA generativa para optimizar flujos de trabajo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white dark:bg-slate-950">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex items-center gap-2 mb-12 justify-center">
+                <i data-lucide="cpu" class="text-indigo-600 dark:text-indigo-400 w-6 h-6"></i>
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Mis Herramientas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Skill Group 1: IA & Cloud -->
+                <div class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 hover:border-indigo-100 dark:hover:border-indigo-900 transition-colors">
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-indigo-500 rounded-full"></span>
+                        IA & Ciencia de Datos
+                    </h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Herramientas generativas y análisis.</p>
+                    <div class="flex flex-wrap gap-2">
+                       
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">ChatGPT</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Copilot</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Gemini</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Poe</span>
+                    </div>
+                </div>
+
+                <!-- Skill Group 2: Datos y Dev -->
+                <div class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 hover:border-indigo-100 dark:hover:border-indigo-900 transition-colors">
+
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-violet-500 rounded-full"></span>
+                        Datos y Desarrollo
+                    </h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Gestión de BDD y Entornos de Desarrollo.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">SQL Server</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">MySQL</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Power BI</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">GitHub</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Visual Studio</span>
+                         <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Google Colab</span>
+                    </div>
+                </div>
+
+                <!-- Skill Group 3: Productividad -->
+                <div class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 hover:border-indigo-100 dark:hover:border-indigo-900 transition-colors">
+                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-fuchsia-500 rounded-full"></span>
+                        Productividad y Colaboración
+                    </h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Herramientas visuales y trabajo en equipo.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Office</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">draw.io</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Slack</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Zoom / Meet</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Canva</span>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Jira</span>
+                         <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 font-medium">Trello</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex items-center gap-2 mb-12">
+                <i data-lucide="graduation-cap" class="text-indigo-600 dark:text-indigo-400 w-6 h-6"></i>
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Formación Académica</h2>
+            </div>
+
+            <!-- Educación Formal -->
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-indigo-200 transition-all mb-10">
+                <div class="flex items-start gap-4">
+                    <div class="mt-1 p-3 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">
+                        <i data-lucide="book-open" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-2xl text-slate-900 dark:text-white">Ingeniería en Sistemas</h3>
+                        <p class="text-indigo-600 dark:text-indigo-400 font-medium text-lg mt-1">Especialización en Ciencia de Datos (En curso)</p>
+                        <p class="text-slate-500 dark:text-slate-400 mt-2">Universidad Doctor Andrés Bello</p>
+                    </div>
+                </div>
+                <div class="text-left md:text-right">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-bold shadow-sm mb-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        Año de Especialización (Actualidad)
+                    </span>
+                    <p class="text-xs text-slate-500 dark:text-slate-500 mt-1">5 Años de carrera completados</p>
+                </div>
+            </div>
+
+            <!-- Rendimiento Académico -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <!-- Tarjeta CUM -->
+                <div class="bg-indigo-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-indigo-100 dark:border-slate-700 flex items-center justify-between">
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="award" class="w-5 h-5 text-indigo-600 dark:text-indigo-400"></i> CUM Global
+                        </h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Coeficiente de Unidades de Mérito</p>
+                    </div>
+                    <div class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">
+                        [8.0]
+                    </div>
+                </div>
+
+                <!-- Tarjeta Notas del Sistema (MINI CARRUSEL) -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 hover:shadow-md transition-all group">
+                    <div class="flex items-center gap-4">
+                        <!-- Contenedor Mini Carrusel -->
+                        <div class="h-24 w-36 relative border border-slate-200 dark:border-slate-600 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 flex-shrink-0">
+                           
+                            
+                            <!-- Imagen Activa -->
+                            <img id="noteImage" src="img/CUM.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Notas+1'" alt="Notas Sistema" class="w-full h-full object-cover cursor-pointer transition-transform duration-300" onclick="openModal(this.src)">
+               
+                            <!-- Botón Siguiente -->
+                           
+
+                            <!-- Indicador de página -->
+
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-white">Historial de Notas</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Capturas del sistema universitario</p>
+                            <p class="text-xs text-indigo-600 dark:text-indigo-400 mt-1 cursor-pointer" onclick="openModal(document.getElementById('noteImage').src)">
+                                <i data-lucide="maximize-2" class="inline w-3 h-3 align-middle"></i> Ver en grande
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APARTADO DE CERTIFICACIONES, CURSOS Y CONGRESOS (CARRUSEL) -->
+            <div class="flex justify-between items-center mb-6 pl-2 border-l-4 border-indigo-500">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Certificaciones, Cursos y Congresos</h3>
+                <div class="flex gap-2">
+                    <button id="prevBtn" class="p-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button id="nextBtn" class="p-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Contenedor del Carrusel -->
+            <div class="overflow-hidden relative px-1 py-4">
+                <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out gap-6">
+                    
+                    <!-- Curso 1 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/Administrador de bases de datos.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Office" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2023</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Administrador de bases de datos</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación Técnica</p>
+                    </div>
+
+                    <!-- Curso 2 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/Asistente web.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Congreso" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2022</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Asistente web</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación Técnica</p>
+                    </div>
+
+                    <!-- Curso 3 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/CLOUD SKILLS CHALLENGE.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Data Science" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2023</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">CLOUD SKILLS CHALLENGE</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación Técnica</p>
+                    </div>
+
+                    <!-- Curso 4 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/COMPUTACIÓN BÁSICA.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma SQL" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2023</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">COMPUTACIÓN BÁSICA</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Curso Técnico</p>
+                    </div>
+
+                    <!-- Curso 5 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/FINDER.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Power BI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2024</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">FINDER</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación</p>
+                    </div>
+
+                    <!-- Curso 6 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/GEMINI.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Git" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2026</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">GEMINI</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación</p>
+                    </div>
+
+                    <!-- Curso 7 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/Introducción a la programación.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2022</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Introducción a la programación</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Programación Certificación</p>
+                    </div>
+
+
+                    <!-- Curso 8 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/INTRODUCCIÓN A LA WEB.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2026</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">INTRODUCCIÓN A LA WEB</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Programación Certificación</p>
+                    </div>
+
+
+
+                    <!-- Curso 9 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/LA TECNOLOGÍA Y LA DIGITALIZACIÓN EN LA CUARTA REVOLUCIÓN INDUSTRIAL.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2022</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">LA TECNOLOGÍA Y LA DIGITALIZACIÓN EN LA CUARTA REVOLUCIÓN INDUSTRIAL</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación</p>
+                    </div>
+
+     <!-- Curso 10 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/Liderazgo.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2025</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Liderazgo</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación</p>
+                    </div>
+
+
+<!-- Curso 11 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/Mejora tu ortografía y redacción.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2021</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Mejora tu ortografía y redacción</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación</p>
+                    </div>
+
+<!-- Curso 12 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/Seguridad e Higiene en ambiente laboral.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2025</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Seguridad e Higiene en ambiente laboral</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación</p>
+                    </div>
+
+<!-- Curso 13 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all group flex flex-col h-full">
+                        <div class="h-48 mb-4 overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 relative">
+                            <img src="img/Tester.png" onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Sin+Imagen+Local'" alt="Diploma Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="openModal(this.src)">
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-medium text-slate-400 dark:text-slate-500">2026</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Tester</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Certificación</p>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+ <!-- NUEVA SECCIÓN: PROYECTOS -->
+    <section id="proyectos" class="py-20 px-4 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 flex items-center justify-center gap-3">
+                <i data-lucide="briefcase" class="w-8 h-8 text-blue-600 dark:text-blue-400"></i>
+                Proyectos Realizados
+            </h2>
+
+            <!-- Grid de Proyectos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <!-- Proyecto 1 -->
+                <article class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-100 dark:border-slate-700 flex flex-col">
+                    <div class="relative h-48 overflow-hidden group">
+                        <!-- Imagen del proyecto (Reemplazar src) -->
+                        <img src="img/Proyecto1.png" alt="Vista previa Proyecto 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">JANEBA</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-1">
+                            Plataforma web desarrollada para la clínica JANEBA con el objetivo de aumentar su visibilidad online. El proyecto soluciona la dificultad de captar pacientes integrando un sistema de reservas intuitivo y un catálogo claro de sus terapias de rehabilitación especializada.
+                        </p>
+                        <!-- Tecnologías -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-full">HTML</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-full">CSS</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-full">JS</span>
+                        </div>
+                        <!-- Botones -->
+                        <div class="flex gap-3 mt-auto">
+                            <a href="https://github.com/N3T091JK/JANEBA2024.git" class="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors text-sm font-medium">
+                                <i data-lucide="github" class="w-4 h-4"></i> Código
+                            </a>
+                            <a href="https://n3t091jk.github.io/JANEBA2024/" class="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                                <i data-lucide="external-link" class="w-4 h-4"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Proyecto 2 -->
+                <article class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-100 dark:border-slate-700 flex flex-col">
+                    <div class="relative h-48 overflow-hidden group">
+                        <img src="img/Proyecto2.png" alt="Vista previa Proyecto 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Zona Geek Sonsonate</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-1">
+                        Plataforma web interactiva diseñada para explorar el catálogo de productos y conocer el menú de la cafetería temática de Zona Geek Sonsonate.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                                 <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-full">HTML</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-full">CSS</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-full">JS</span>
+                        </div>
+                        <div class="flex gap-3 mt-auto">
+                            <a href="https://github.com/N3T091JK/Zona-Geek-Sonsonate.git" class="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors text-sm font-medium">
+                                <i data-lucide="github" class="w-4 h-4"></i> Código
+                            </a>
+                            <a href="https://n3t091jk.github.io/Zona-Geek-Sonsonate/" class="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                                <i data-lucide="external-link" class="w-4 h-4"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Proyecto 3 -->
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white dark:bg-slate-950">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <div class="inline-block p-3 bg-indigo-100 dark:bg-indigo-900/50 rounded-full text-indigo-600 dark:text-indigo-400 mb-6">
+                <i data-lucide="mail" class="w-8 h-8"></i>
+            </div>
+            
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">¿Conectamos?</h2>
+            
+            <p class="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
+                Estoy disponible para proyectos de Ciencia de Datos, Desarrollo Web o automatización con IA. 
+                Si buscas a alguien apasionado por la tecnología para unirse a tu equipo, hablemos.
+            </p>
+
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-12">
+                <a 
+                    href="mailto:pa0878022021@unab.edu.sv"
+                    class="inline-flex items-center justify-center gap-3 bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 dark:hover:bg-indigo-500 hover:shadow-lg hover:-translate-y-1 transition-all"
+                >
+                    <i data-lucide="mail" class="w-5 h-5"></i> pa0878022021@unab.edu.sv
+                </a>
+                <a 
+                    href="https://wa.me/50370192145"
+                    class="inline-flex items-center justify-center gap-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all"
+                >
+                    <i data-lucide="phone" class="w-5 h-5"></i> +503 7019 2145
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-6 text-slate-400 dark:text-slate-500">
+                <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors transform hover:scale-110"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors transform hover:scale-110"><i data-lucide="github" class="w-8 h-8"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 dark:bg-black text-slate-400 py-8 border-t border-slate-800 dark:border-slate-900">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p id="copyright">© 2024 Douglas Polanco. Construido con HTML & Tailwind.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+
+        // Actualizar año copyright
+        document.getElementById('copyright').innerHTML = `© ${new Date().getFullYear()} Douglas Polanco. Construido con HTML & Tailwind.`;
+
+        // Lógica de cambio de tema (Dark Mode)
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // --- LÓGICA DEL MODAL DE IMAGEN ---
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        function openModal(src) {
+            modal.classList.remove('hidden');
+            // Pequeño timeout para la transición de opacidad
+            setTimeout(() => {
+                modalImg.src = src;
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Evitar scroll
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // --- LÓGICA DEL CARRUSEL GRANDE (Cursos) ---
+        const track = document.getElementById('carouselTrack');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        let currentIndex = 0;
+        const totalItems = 13; 
+        
+        function getItemsVisible() {
+            return window.innerWidth >= 768 ? 3 : 1;
+        }
+
+        function updateCarousel() {
+            const itemsVisible = getItemsVisible();
+            track.style.transform = `translateX(-${currentIndex * (100 / itemsVisible)}%)`;
+            
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= totalItems - itemsVisible;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const itemsVisible = getItemsVisible();
+            if (currentIndex < totalItems - itemsVisible) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            currentIndex = 0;
+            updateCarousel();
+        });
+        updateCarousel();
+
+
+        // --- LÓGICA DEL MINI CARRUSEL (Notas) ---
+        const notesImages = ['Diploma/Notas1.png', 'Diploma/Notas2.png'];
+        let currentNoteIndex = 0;
+
+        function changeNoteImage(direction) {
+            currentNoteIndex += direction;
+            
+            // Loop simple: si pasa del final, vuelve al principio y viceversa
+            if (currentNoteIndex >= notesImages.length) {
+                currentNoteIndex = 0;
+            } else if (currentNoteIndex < 0) {
+                currentNoteIndex = notesImages.length - 1;
+            }
+
+            // Actualizar imagen y contador
+            const imgElement = document.getElementById('noteImage');
+            imgElement.style.opacity = '0'; // Efecto fade out rápido
+            
+            setTimeout(() => {
+                imgElement.src = notesImages[currentNoteIndex];
+                // Actualizar contador visual
+                document.getElementById('noteIndex').textContent = currentNoteIndex + 1;
+                imgElement.style.opacity = '1'; // Fade in
+            }, 150);
+        }
+
+    </script>
+</body>
+</html>
